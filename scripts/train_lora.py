@@ -62,8 +62,9 @@ def main():
         logging_steps=20,
         predict_with_generate=True,
         generation_max_length=128,
-        fp16=False,
-        bf16=True,
+        generation_num_beams=4,
+        fp16=False,  # T5 models are numerically unstable in fp16 (NaN losses) - use bf16 instead
+        bf16=True,  # RTX 3060 (Ampere) supports bf16 natively
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         report_to="none",
